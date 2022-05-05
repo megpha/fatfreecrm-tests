@@ -35,13 +35,4 @@ public class TestNgTestBase {
         gridHubUrl = new URL("http://192.168.1.85:4444/wd/hub");
     }
 
-    @BeforeTest
-    public void initWebDriver() {
-        driver = new RemoteWebDriver(gridHubUrl, capabilities);
-    }
-
-    @AfterTest
-    public void closeDriver() {
-        driver.close();
-    }
 }

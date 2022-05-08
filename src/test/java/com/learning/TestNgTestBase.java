@@ -17,7 +17,7 @@ import org.testng.annotations.*;
  */
 public class TestNgTestBase {
 
-    protected static String baseUrl = "https://www.facebook.com/";
+    protected static String baseUrl = "https://qafatfreecrm.herokuapp.com/";
     protected static URL gridHubUrl;
     protected static DesiredCapabilities capabilities;
 

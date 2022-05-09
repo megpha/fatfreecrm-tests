@@ -21,6 +21,9 @@ public class LoginPage extends Page {
     @FindBy(how = How.XPATH, using = "//*[@type='submit']")
     @CacheLookup
     public WebElement loginButton;
+    @FindBy(how = How.LINK_TEXT, using = "Forgot Password?")
+    @CacheLookup
+    public WebElement forgotPasswordLink;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);

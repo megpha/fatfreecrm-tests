@@ -1,5 +1,6 @@
 package com.learning;
 
+import com.learning.pages.ForgotPasswordPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -27,11 +28,20 @@ public class LoginPageTests extends TestNgTestBase {
     @Test
     public void testTitle() {
         loginPage = new LoginPage(driver);
-        Assert.assertEquals("Facebook - log in or sign up", loginPage.getTitle());
+        Assert.assertEquals("Fat Free CRM", loginPage.getTitle());
+    }
+
+    @Test
+    public void testForgotPasswordPage() {
+        loginPage = new LoginPage(driver);
+        loginPage.forgotPasswordLink.click();
+        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(this.driver);
+        Assert.assertEquals("Fat Free CRM", forgotPasswordPage.getTitle());
     }
 
     @Test
     public void testInvalidUserName() {
+        driver.get(baseUrl + "users/sign_in");
         loginPage = new LoginPage(driver);
         loginPage.login("user", "admin");
         Assert.assertEquals("Invalid Email or password.", loginPage.getFlashMessage());
@@ -39,6 +49,7 @@ public class LoginPageTests extends TestNgTestBase {
 
     @Test
     public void testInvalidPassword() {
+        driver.get(baseUrl + "users/sign_in");
         loginPage = new LoginPage(driver);
         loginPage.login("admin", "password");
         Assert.assertEquals("Invalid Email or password.", loginPage.getFlashMessage());

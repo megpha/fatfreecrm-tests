@@ -1,6 +1,7 @@
 package com.learning.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -32,6 +33,13 @@ public class LoginPage extends Page {
     public void login(String username, String password) {
         this.email.sendKeys(username);
         this.password.sendKeys(password);
+        this.loginButton.submit();
+    }
+
+    public void loginWithJs(String userName, String password){
+        JavascriptExecutor j = (JavascriptExecutor)driver;
+        j.executeScript ("document.getElementById('user_email').value='"+userName+"'");
+        j.executeScript ("document.getElementById('user_password').value='"+password+"'");
         this.loginButton.submit();
     }
 

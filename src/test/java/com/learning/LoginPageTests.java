@@ -1,34 +1,28 @@
 package com.learning;
 
 import com.learning.pages.ForgotPasswordPage;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.PageFactory;
-
-import org.testng.Assert;
-import org.testng.annotations.*;
-
+import com.learning.pages.HomePage;
 import com.learning.pages.LoginPage;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class LoginPageTests extends TestNgTestBase {
 
     private LoginPage loginPage;
 
-    @BeforeTest
-    public void initWebDriver() {
-        driver = new ChromeDriver();
-        driver.get(baseUrl);
-    }
-
-    @AfterTest
-    public void closeDriver() {
-        driver.close();
-    }
-
     @Test
     public void testTitle() {
         loginPage = new LoginPage(driver);
         Assert.assertEquals("Fat Free CRM", loginPage.getTitle());
+    }
+
+    @Test
+    public void testValidUserNamePasswordWithJS() {
+        loginPage = new LoginPage(driver);
+        loginPage.loginWithJs("admin", "admin");
+        HomePage homePage = new HomePage(driver);
+        Assert.assertNotNull(homePage.profilePageLink);
     }
 
     @Test

@@ -6,6 +6,7 @@ import java.net.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,6 +23,17 @@ public class TestNgTestBase {
     protected static DesiredCapabilities capabilities;
 
     protected WebDriver driver;
+
+    @BeforeTest
+    public void initWebDriver() {
+        driver = new ChromeDriver();
+        driver.get(baseUrl);
+    }
+
+    @AfterTest
+    public void closeDriver() {
+        driver.close();
+    }
 
     @BeforeSuite
     public void initTestSuite() throws IOException {
